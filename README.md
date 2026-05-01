@@ -152,4 +152,3 @@ run Sonar BLE Radar
   → may appear as new devices over time
 
 * Bluetooth must be enabled on the host machine
-```
