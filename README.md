@@ -6,7 +6,21 @@
 
 A real-time Bluetooth Low Energy (BLE) scanner visualized as an animated radar interface.
 
-This application continuously scans for nearby BLE devices and maps them onto a radar-style display. Each device is represented as a dynamic point, with its position estimated based on signal strength (RSSI). A rotating radar sweep provides a real-time, intuitive visualization of surrounding Bluetooth activity.
+This application continuously scans for nearby BLE devices and maps them onto a radar-style display. Each device is represented as a dynamic point, with its position estimated based on signal strength.
+
+## Table of Contents
+
+- [How It Works](#how-it-works)
+- [Features](#features)
+- [Supported Device Classification](#supported-device-classification)
+- [Requirements](#requirements)
+- [Getting Started](#getting-started)
+- [Controls](#controls)
+- [Configuration](#configuration)
+- [Troubleshooting](#troubleshooting)
+- [Notes & Limitations](#notes--limitations)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -14,11 +28,11 @@ This application continuously scans for nearby BLE devices and maps them onto a 
 
 The system operates in three stages:
 
-1. **Scanning** Continuously scans for nearby BLE devices using Python BLE libraries.
+1. **Scanning:** Continuously scans for nearby BLE devices using Python BLE libraries.
 
-2. **Signal Processing** Uses RSSI (signal strength) to estimate relative distance.
+2. **Signal Processing:** Uses RSSI (signal strength) to estimate relative distance.
 
-3. **Visualization** Devices are rendered as radar points:
+3. **Visualization:** Devices are rendered as radar points:
    - Strong signal → closer to center  
    - Weak signal → farther away  
    - Radar sweep updates positions in real time  
@@ -72,43 +86,49 @@ Additional behavior:
 - Python 3.8+ (with `tkinter` and `winsound` available, usually included by default)
 - Bluetooth adapter  
 
-Install dependencies:
-
-```bash
-pip install bleak
-```
-
 ---
 
 ## Getting Started
 
-### 1. Prepare assets
+### Installation
 
-Ensure the sound file is located in the exact same directory as the main python script:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Eric-8787/Sonar-BLE-Radar.git
+   cd Sonar-BLE-Radar
+   ```
 
-```text
-sonar_ping.wav
-```
+2. Install dependencies:
+   ```bash
+   pip install bleak
+   ```
 
-### 2. Run the application
+3. Prepare assets:
+   Ensure the sound file is located in the exact same directory as the main python script:
+   ```text
+   sonar_ping.wav
+   ```
 
-[cite_start]**Option A: Quick Start (Batch File)** [cite: 1]
+### Run the Application
+
+**Option A: Quick Start (Batch File)**  
 Simply double-click `BLE-Sonar-Radar.bat` to launch the application.
 
-**Option B: Command Line**
+**Option B: Command Line**  
 Open your terminal and run:
 ```bash
 python BLE-Sonar-Radar.py
 ```
 
-**Option C: Custom PowerShell Command**
-If you want to launch the radar quickly from anywhere using PowerShell, you can add a custom function to your PowerShell profile.(I've already written it for you, you just need to change the path.)
+**Option C: Custom PowerShell Command**  
+If you want to launch the radar quickly from anywhere using PowerShell, you can add a custom function to your PowerShell profile. (I've already written it for you, you just need to change the path.)
 
-Type it on your PowerShell:
-```
+Type this in your PowerShell:
+```powershell
 notepad $PROFILE
 ```
-**Now go and add a new ps1 script file:**
+
+Now add this script to your PowerShell profile:
 
 ```powershell
 function run {
@@ -147,6 +167,41 @@ run Sonar BLE Radar
 
 ---
 
+## Configuration
+
+You can customize the application behavior by editing the following values in `BLE-Sonar-Radar.py`:
+
+- `SCAN_INTERVAL`: Time between BLE scans (in milliseconds)
+- `DISTANCE_RINGS`: Adjust distance ring thresholds (in meters)
+- `MAX_DEVICES`: Maximum number of devices to display on the radar
+- `UPDATE_FREQUENCY`: How often the radar updates (in milliseconds)
+
+---
+
+## Troubleshooting
+
+**No devices detected**
+- Ensure Bluetooth is enabled on your system
+- Check that other BLE devices are powered on and nearby
+- Try restarting the application
+
+**Sound issues**
+- Verify `sonar_ping.wav` exists in the application directory
+- Check your system volume settings
+- Ensure your audio device is connected
+
+**Performance lag or high CPU usage**
+- Reduce the number of devices being scanned
+- Increase the `SCAN_INTERVAL` value
+- Close other applications consuming system resources
+
+**Application crashes on startup**
+- Verify all dependencies are installed: `pip install -r requirements.txt`
+- Ensure Python 3.8+ is installed: `python --version`
+- Check that `tkinter` is available (usually included with Python)
+
+---
+
 ## Notes & Limitations
 
 * Distance estimation is **approximate only**
@@ -156,3 +211,27 @@ run Sonar BLE Radar
   → may appear as new devices over time
 
 * Bluetooth must be enabled on the host machine
+
+* Performance depends on the number of BLE devices in range
+
+* RSSI values vary by device hardware and antenna design
+
+* Not suitable for precise location tracking (use UWB for that)
+
+---
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add your feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Submit a pull request
+
+---
+
+## License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
