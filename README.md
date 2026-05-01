@@ -14,14 +14,11 @@ This application continuously scans for nearby BLE devices and maps them onto a 
 
 The system operates in three stages:
 
-1. **Scanning**  
-   Continuously scans for nearby BLE devices using Python BLE libraries.
+1. **Scanning** Continuously scans for nearby BLE devices using Python BLE libraries.
 
-2. **Signal Processing**  
-   Uses RSSI (signal strength) to estimate relative distance.
+2. **Signal Processing** Uses RSSI (signal strength) to estimate relative distance.
 
-3. **Visualization**  
-   Devices are rendered as radar points:
+3. **Visualization** Devices are rendered as radar points:
    - Strong signal → closer to center  
    - Weak signal → farther away  
    - Radar sweep updates positions in real time  
@@ -50,29 +47,29 @@ Additional behavior:
 ## Supported Device Classification
 
 | Brand     | Detected Types |
-|----------|----------------|
-| Apple    | iPhone, iPad, MacBook, AirPods, AirTag, Watch |
-| Samsung  | Galaxy, Buds, Watch |
-| Xiaomi   | Redmi, POCO, Mi Band |
-| ASUS     | ROG, TUF, ZenBook, VivoBook |
-| Lenovo   | ThinkPad, Legion, Yoga |
-| Dell     | XPS, Alienware, Inspiron |
-| HP       | Spectre, Envy, Omen |
-| Acer     | Predator, Nitro, Swift |
-| MSI      | Raider, Stealth, Katana |
-| Razer    | Blade |
-| Microsoft| Surface, Xbox |
-| Sony     | Headphones, Xperia |
-| Google   | Pixel, Nest |
-| Huawei   | Watch, FreeBuds |
-| Others   | OPPO, Vivo, Realme, JBL, Bose, Beats |
+|-----------|----------------|
+| Apple     | iPhone, iPad, MacBook, AirPods, AirTag, Watch |
+| Samsung   | Galaxy, Buds, Watch |
+| Xiaomi    | Redmi, POCO, Mi Band |
+| ASUS      | ROG, TUF, ZenBook, VivoBook |
+| Lenovo    | ThinkPad, Legion, Yoga |
+| Dell      | XPS, Alienware, Inspiron |
+| HP        | Spectre, Envy, Omen |
+| Acer      | Predator, Nitro, Swift |
+| MSI       | Raider, Stealth, Katana |
+| Razer     | Blade |
+| Microsoft | Surface, Xbox |
+| Sony      | Headphones, Xperia |
+| Google    | Pixel, Nest |
+| Huawei    | Watch, FreeBuds |
+| Others    | OPPO, Vivo, Realme, JBL, Bose, Beats |
 
 ---
 
 ## Requirements
 
 - Windows 10 / 11  
-- Python 3.8+  
+- Python 3.8+ (with `tkinter` and `winsound` available, usually included by default)
 - Bluetooth adapter  
 
 Install dependencies:
@@ -87,35 +84,52 @@ pip install bleak
 
 ### 1. Prepare assets
 
-Place the sound file in the same directory:
+Ensure the sound file is located in the exact same directory as the main python script:
 
-```
+```text
 sonar_ping.wav
 ```
 
----
-
 ### 2. Run the application
 
+[cite_start]**Option A: Quick Start (Batch File)** [cite: 1]
+Simply double-click `BLE-Sonar-Radar.bat` to launch the application.
+
+**Option B: Command Line**
+Open your terminal and run:
 ```bash
 python BLE-Sonar-Radar.py
 ```
----
-## PowerShell command
-Use with PowerShell Command
 
-If you are using the custom run command:
-```PowerShell
+**Option C: Custom PowerShell Command**
+If you want to launch the radar quickly from anywhere using PowerShell, you can add a custom function to your PowerShell profile.
+
+👉 Edit your PowerShell profile (usually located at `$PROFILE`) and add:
+
+```powershell
+function run {
+    param(
+        [string]$arg1,
+        [string]$arg2,
+        [string]$arg3
+    )
+
+    if ($arg1 -eq "Sonar" -and $arg2 -eq "BLE" -and $arg3 -eq "Radar") {
+        Write-Host "Starting up Sonar BLE Radar 4.5..."
+        Write-Host "Starting up..."
+        Write-Host "loading..."
+
+        # ⚠️ Replace the path below with your actual file location
+        python "C:\YourPath\BLE-Sonar-Radar.py"
+    }
+}
+```
+
+Once saved and reloaded, you can run the app simply by typing:
+```powershell
 run Sonar BLE Radar
 ```
-👉 You must edit the path inside your script to match your computer.
 
-Example:
-```
-$exePath = "C:\YourPath\sonar_ble_radar.exe"
-$pyPath  = "C:\YourPath\sonar_ble_radar.py"
-```
-⚠️ Replace C:\YourPath\ with your actual file location.
 ---
 
 ## Controls
@@ -138,3 +152,4 @@ $pyPath  = "C:\YourPath\sonar_ble_radar.py"
   → may appear as new devices over time
 
 * Bluetooth must be enabled on the host machine
+```
