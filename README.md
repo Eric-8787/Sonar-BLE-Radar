@@ -6,29 +6,29 @@
 
 A real-time Bluetooth Low Energy (BLE) scanner visualized as an animated radar interface.
 
-This application continuously scans for nearby BLE devices and maps them onto a radar-style display. Each device appears as a moving dot, with its position dynamically estimated based on signal strength (RSSI). The sweeping radar animation mimics traditional sonar, providing an intuitive way to observe nearby Bluetooth activity.
+This application continuously scans for nearby BLE devices and maps them onto a radar-style display. Each device is represented as a dynamic point, with its position estimated based on signal strength (RSSI). A rotating radar sweep provides a real-time, intuitive visualization of surrounding Bluetooth activity.
 
 ---
 
 ## How It Works
 
-The system operates in three main stages:
+The system operates in three stages:
 
 1. **Scanning**  
    Continuously scans for nearby BLE devices using Python BLE libraries.
 
 2. **Signal Processing**  
-   RSSI (signal strength) is used to estimate relative distance.
+   Uses RSSI (signal strength) to estimate relative distance.
 
 3. **Visualization**  
-   Devices are rendered on a radar interface:
-   - Stronger signal → closer to center  
-   - Weaker signal → farther away  
+   Devices are rendered as radar points:
+   - Strong signal → closer to center  
+   - Weak signal → farther away  
    - Radar sweep updates positions in real time  
 
 Additional behavior:
 - Devices are automatically classified by **brand and type**
-- A side panel lists devices sorted by signal strength
+- A side panel lists all detected devices sorted by signal strength
 
 ---
 
@@ -75,7 +75,51 @@ Additional behavior:
 - Python 3.8+  
 - Bluetooth adapter  
 
-Install dependency:
+Install dependencies:
 
 ```bash
 pip install bleak
+````
+
+---
+
+## Getting Started
+
+### 1. Prepare assets
+
+Place the sound file in the same directory:
+
+```
+sonar_ping.wav
+```
+
+---
+
+### 2. Run the application
+
+```bash
+python BLE-Sonar-Radar.py
+```
+
+---
+
+## Controls
+
+| Input        | Action            |
+| ------------ | ----------------- |
+| F11          | Toggle fullscreen |
+| ESC          | Exit fullscreen   |
+| Click dot    | Copy device info  |
+| Power button | Exit application  |
+
+---
+
+## Notes & Limitations
+
+* Distance estimation is **approximate only**
+  (RSSI is affected by walls, interference, and hardware differences)
+
+* Some devices (e.g., iPhones) use **MAC randomization**
+  → may appear as new devices over time
+
+* Bluetooth must be enabled on the host machine
