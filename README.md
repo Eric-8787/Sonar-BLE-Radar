@@ -103,6 +103,7 @@ python BLE-Sonar-Radar.py
 
 **Option C: Custom PowerShell Command**
 If you want to launch the radar quickly from anywhere using PowerShell, you can add a custom function to your PowerShell profile.(I've already written it for you, you just need to change the path.)
+
 Type it on your PowerShell:
 ```
 notepad $PROFILE
