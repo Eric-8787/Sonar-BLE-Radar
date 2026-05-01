@@ -79,7 +79,7 @@ Install dependencies:
 
 ```bash
 pip install bleak
-````
+```
 
 ---
 
@@ -100,7 +100,22 @@ sonar_ping.wav
 ```bash
 python BLE-Sonar-Radar.py
 ```
+---
+## PowerShell command
+Use with PowerShell Command
 
+If you are using the custom run command:
+```PowerShell
+run Sonar BLE Radar
+```
+👉 You must edit the path inside your script to match your computer.
+
+Example:
+
+$exePath = "C:\YourPath\sonar_ble_radar.exe"
+$pyPath  = "C:\YourPath\sonar_ble_radar.py"
+
+⚠️ Replace C:\YourPath\ with your actual file location.
 ---
 
 ## Controls
