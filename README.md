@@ -111,10 +111,10 @@ run Sonar BLE Radar
 👉 You must edit the path inside your script to match your computer.
 
 Example:
-
+```
 $exePath = "C:\YourPath\sonar_ble_radar.exe"
 $pyPath  = "C:\YourPath\sonar_ble_radar.py"
-
+```
 ⚠️ Replace C:\YourPath\ with your actual file location.
 ---
 
