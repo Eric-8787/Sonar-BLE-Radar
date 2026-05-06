@@ -219,6 +219,14 @@ You can customize the application behavior by editing the following values in `B
 * Not suitable for precise location tracking (use UWB for that)
 
 ---
+## Security & Privacy
+
+- **Local Operation**: This application runs entirely on your machine. No data is sent to external servers.
+- **MAC Address Collection**: The app captures MAC addresses of nearby BLE devices. Only use in environments where you have permission to scan.
+- **Data Retention**: Device information is displayed only during the current session and is cleared when the application closes.
+- **Clipboard Access**: Clicking devices copies their information to your clipboard. Be cautious when pasting into untrusted applications.
+- **Bluetooth Privacy**: Some devices (like iPhones) use MAC randomization, so MAC addresses may not reliably identify specific devices over time.
+---
 
 ## Contributing
 
